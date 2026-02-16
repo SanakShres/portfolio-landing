@@ -56,7 +56,7 @@ export default function Header(): JSX.Element {
           absolute top-0 w-full z-10
           flex justify-between items-center
           px-8 py-8
-          font-light text-amber-300
+          font-light text-white
         "
 			>
 				{/* Logo */}
@@ -74,7 +74,7 @@ export default function Header(): JSX.Element {
 							Code by
 						</p>
 						<p className="relative transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] pl-1">
-							Dennis
+							SS
 						</p>
 						<p className="absolute left-30 pl-1 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">
 							Snellenberg

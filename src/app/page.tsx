@@ -33,6 +33,7 @@ export default function Home() {
 				{isLoading && <Preloader />}
 			</AnimatePresence>
 			<PortfolioLanding />
+			<PortfolioLanding />
 		</main>
 	);
 }
