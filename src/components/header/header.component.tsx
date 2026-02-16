@@ -98,15 +98,16 @@ export default function Header(): JSX.Element {
 			{/* Hamburger Button */}
 			<div
 				ref={buttonRef}
-				className="fixed right-0 z-40 transform scale-0"
+				className="fixed right-0 z-4 transform scale-0"
 			>
 				<RoundedButton
 					onClick={() => setIsActive((prev) => !prev)}
-					className="relative m-5 w-20 h-20 rounded-full bg-[#1C1D20] flex items-center justify-center"
+					className="relative m-5 w-20 h-20 rounded-full bg-[#0b1944] flex items-center justify-center"
 				>
 					<div
 						className={`
-              relative w-full h-full
+              relative flex-1
+			  z-1
               before:content-['']
               after:content-['']
               before:block after:block
@@ -115,9 +116,9 @@ export default function Header(): JSX.Element {
               before:bg-white after:bg-white
               before:mx-auto after:mx-auto
               before:relative after:relative
-              before:-top-1.25 after:top-1.25
+              before:top-1.25 after:-top-1.25
               transition-transform duration-300
-              ${isActive ? "before:-rotate-45 before:top-0 after:rotate-45 after:-top-px" : ""}
+              ${isActive ? "before:-rotate-45 before:top-px after:rotate-45 after:-top-px" : ""}
             `}
 					/>
 				</RoundedButton>

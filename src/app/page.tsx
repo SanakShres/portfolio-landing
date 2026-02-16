@@ -11,6 +11,7 @@ import Image from "next/image";
 // components
 import Preloader from "@/components/preloader.component";
 import PortfolioLanding from "@/components/landing.component";
+import AboutMe from "@/components/about.component";
 
 export default function Home() {
 	const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +34,7 @@ export default function Home() {
 				{isLoading && <Preloader />}
 			</AnimatePresence>
 			<PortfolioLanding />
-			<PortfolioLanding />
+			<AboutMe />
 		</main>
 	);
 }

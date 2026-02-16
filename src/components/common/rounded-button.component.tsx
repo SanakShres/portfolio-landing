@@ -73,7 +73,6 @@ export default function RoundedButton({
 				onMouseEnter={handleMouseEnter}
 				onMouseLeave={handleMouseLeave}
 				style={{ overflow: "hidden" }}
-				{...attributes}
 				className={`
           relative
           flex items-center justify-center
@@ -83,17 +82,9 @@ export default function RoundedButton({
           px-15 py-3.75
           group
         `}
+				{...attributes}
 			>
-				{/* Content */}
-				<div
-					className="
-            relative z-10
-            transition-colors duration-400 linear
-            group-hover:text-white
-          "
-				>
-					{children}
-				</div>
+				{children}
 
 				{/* Animated Circle */}
 				<div
