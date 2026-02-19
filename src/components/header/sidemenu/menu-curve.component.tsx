@@ -3,12 +3,10 @@
 import React, { JSX, useState } from "react";
 import { motion, Variants } from "framer-motion";
 
-export default function SidebarCurve(): JSX.Element {
+export default function MenuCurve(): JSX.Element {
 	const [height] = useState<number>(() =>
 		typeof window !== "undefined" ? window.innerHeight : 0,
 	);
-
-	if (!height) return <></>;
 
 	const initialPath = `M100 0 L100 ${height} Q-100 ${height / 2} 100 0`;
 
@@ -23,7 +21,7 @@ export default function SidebarCurve(): JSX.Element {
 			transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
 		},
 		exit: {
-			d: initialPath,
+			d: targetPath,
 			transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
 		},
 	};
@@ -38,8 +36,6 @@ export default function SidebarCurve(): JSX.Element {
         fill-[#11232d]
         pointer-events-none
       "
-			viewBox="0 0 100 100"
-			preserveAspectRatio="none"
 		>
 			<motion.path
 				fill="#11232d"

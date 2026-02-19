@@ -7,6 +7,7 @@ import { useScroll } from "framer-motion";
 
 // ui components
 import CardStack from "@/components/ui/CardsStack";
+import ScrollTitle from "@/components/ui/ScrollTitle";
 
 export const projects = [
 	{
@@ -67,20 +68,23 @@ export default function Projects() {
 			ref={container}
 			className="relative flex justify-center items-center bg-black text-white"
 		>
-			<div className="max-w-350 relative">
-				{projects.map((project, i) => {
-					const targetScale = 1 - (projects.length - i) * 0.05;
-					return (
-						<CardStack
-							key={`p_${i}`}
-							i={i}
-							{...project}
-							progress={scrollYProgress}
-							range={[i * 0.25, 1]}
-							targetScale={targetScale}
-						/>
-					);
-				})}
+			<div className="max-w-350 text-center py-25">
+				<ScrollTitle title="Projects" scrollContainerRef={container} />
+				<div className="relative">
+					{projects.map((project, i) => {
+						const targetScale = 1 - (projects.length - i) * 0.05;
+						return (
+							<CardStack
+								key={`p_${i}`}
+								i={i}
+								{...project}
+								progress={scrollYProgress}
+								range={[i * 0.25, 1]}
+								targetScale={targetScale}
+							/>
+						);
+					})}
+				</div>
 			</div>
 		</section>
 	);

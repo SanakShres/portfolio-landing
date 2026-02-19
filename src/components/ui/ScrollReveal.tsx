@@ -45,14 +45,27 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
 		return () => ctx.revert();
 	}, [scrollContainerRef, start, end, stagger]);
 
+	// Split by paragraph first, then by words
+	const splitParagraphs = (text: string): JSX.Element[] => {
+		return text.split("\n").map((para, i) => {
+			const trimmed = para.trim();
+			if (!trimmed) return <div key={i} className="h-4" />; // empty line / spacing
+			return (
+				<p key={i} className="flex flex-wrap justify-center mb-4">
+					{splitWords(trimmed)}
+				</p>
+			);
+		});
+	};
+
 	const splitWords = (text: string): JSX.Element[] => {
 		return text.split(" ").map((word, i) => (
-			<p
+			<span
 				key={`${word}_${i}`}
-				className="text-4xl mr-4 font-bold text-center"
+				className="text-xl md:text-2xl mr-2 font-bold text-center"
 			>
 				{splitLetters(word)}
-			</p>
+			</span>
 		));
 	};
 
@@ -67,9 +80,9 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
 	return (
 		<div
 			ref={root}
-			className={`flex flex-wrap max-w-[90%] mx-auto ${className}`}
+			className={`flex flex-wrap max-w-[90%] max-h-[50vh] mx-auto ${className}`}
 		>
-			{splitWords(text)}
+			{splitParagraphs(text)}
 		</div>
 	);
 };

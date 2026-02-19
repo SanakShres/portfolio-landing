@@ -8,7 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // components
-import Sidebar from "@/components/header/sidebar/sidebar.component";
+import SideMenu from "@/components/header/sidemenu/sidemenu.component";
 import RoundedButton from "@/components/common/rounded-button.component";
 import Magnetic from "@/components/common/magnetic.component";
 
@@ -98,11 +98,11 @@ export default function Header(): JSX.Element {
 			{/* Hamburger Button */}
 			<div
 				ref={buttonRef}
-				className="fixed right-0 z-4 transform scale-0"
+				className="fixed right-0 z-20 transform scale-0"
 			>
 				<RoundedButton
 					onClick={() => setIsActive((prev) => !prev)}
-					className="relative m-5 w-20 h-20 rounded-full bg-[#0b1944] flex items-center justify-center"
+					className="relative m-5 w-20 h-20 rounded-full bg-[#0b1944] flex items-center justify-center cursor-pointer"
 				>
 					<div
 						className={`
@@ -126,7 +126,7 @@ export default function Header(): JSX.Element {
 
 			{/* Mobile Nav Overlay */}
 			<AnimatePresence mode="wait">
-				{isActive && <Sidebar />}
+				{isActive && <SideMenu />}
 			</AnimatePresence>
 		</>
 	);

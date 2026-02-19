@@ -10,6 +10,8 @@ import Preloader from "@/components/preloader.component";
 import PortfolioLanding from "@/components/landing.component";
 import AboutMe from "@/components/about.component";
 import Projects from "@/components/projects.component";
+import SlidingContent from "@/components/sliding-content.component";
+import Contact from "@/components/contact.component";
 
 export default function Home() {
 	const [isLoading, setIsLoading] = useState(false);
@@ -39,8 +41,10 @@ export default function Home() {
 				{isLoading && <Preloader />}
 			</AnimatePresence>
 			<PortfolioLanding />
+			<SlidingContent />
 			<AboutMe />
 			<Projects />
+			<Contact />
 		</main>
 	);
 }
