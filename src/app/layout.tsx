@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Rubik_Iso, Rubik_Glitch } from "next/font/google";
+import { Geist, Rubik_Iso, Rubik_Glitch } from "next/font/google";
 import "./globals.css";
 
 // components

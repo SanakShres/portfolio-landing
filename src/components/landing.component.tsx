@@ -1,6 +1,9 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import Image from "next/image";
+
+// ui components
+import RippleGrid from "@/components/ui/RippleGrid";
+import PixelSnow from "@/components/ui/PixelSnow";
 
 const slideUp: Variants = {
 	initial: {
@@ -18,22 +21,44 @@ export default function PortfolioLanding() {
 			variants={slideUp}
 			initial="initial"
 			animate="enter"
-			className="relative flex h-dvh overflow-hidden"
+			className="relative flex h-dvh overflow-hidden bg-black"
 		>
-			<Image
-				src="/images/landing-background.jpg"
-				fill={true}
-				alt="background"
-			/>
+			<div className="absolute inset-0">
+				<PixelSnow
+					color="#ffffff"
+					flakeSize={0.01}
+					minFlakeSize={1.25}
+					pixelResolution={300}
+					speed={1.25}
+					density={0.1}
+					direction={125}
+					brightness={0.5}
+					depthFade={4}
+					farPlane={20}
+					gamma={0.4545}
+					variant="square"
+				/>
+			</div>
+			<div className="absolute inset-0 flex items-center justify-center">
+				<div className="w-1/2 h-1/2">
+					<RippleGrid
+						enableRainbow={false}
+						gridColor="#ffffff"
+						rippleIntensity={0.05}
+						gridSize={10}
+						gridThickness={15}
+						mouseInteraction={true}
+						mouseInteractionRadius={1.2}
+						opacity={0.4}
+					/>
+				</div>
+			</div>
 			<div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-				<h1 className="text-6xl max-[420px]:text-4xl text-white font-light">
-					Hi, I am Dennis
+				<h1 className="text-8xl max-[420px]:text-4xl text-white font-light font-glitch">
+					Hi, I&apos;m Sanak
 				</h1>
 				<p className="text-2xl max-[420px]:text-lg text-white mt-4">
 					A passionate Frontend Developer
-				</p>
-				<p className="text-lg max-[420px]:text-sm text-white mt-2">
-					Welcome to my portfolio
 				</p>
 				<div className="mt-6"></div>
 			</div>

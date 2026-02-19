@@ -2,23 +2,28 @@
 import { useEffect, useState } from "react";
 
 // packages
-import LocomotiveScroll from "locomotive-scroll";
 import { AnimatePresence } from "framer-motion";
-
-// next js components
-import Image from "next/image";
+import Lenis from "lenis";
 
 // components
 import Preloader from "@/components/preloader.component";
 import PortfolioLanding from "@/components/landing.component";
 import AboutMe from "@/components/about.component";
+import Projects from "@/components/projects.component";
 
 export default function Home() {
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		(async () => {
-			const locomotiveScroll = new LocomotiveScroll();
+			const lenis = new Lenis();
+
+			function raf(time: number) {
+				lenis.raf(time);
+				requestAnimationFrame(raf);
+			}
+
+			requestAnimationFrame(raf);
 
 			setIsLoading(true);
 			setTimeout(() => {
@@ -35,7 +40,7 @@ export default function Home() {
 			</AnimatePresence>
 			<PortfolioLanding />
 			<AboutMe />
-			<PortfolioLanding />
+			<Projects />
 		</main>
 	);
 }
