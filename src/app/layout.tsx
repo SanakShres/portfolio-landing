@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Rubik_Iso, Rubik_Glitch } from "next/font/google";
+import { Geist, Rubik_Iso, Rubik_Dirt } from "next/font/google";
 import "./globals.css";
 
 // components
 import Header from "@/components/header/header.component";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -16,8 +17,8 @@ const rubikIso = Rubik_Iso({
 	subsets: ["latin"],
 });
 
-const rubikGlitch = Rubik_Glitch({
-	variable: "--font-rubik-glitch",
+const rubikDirt = Rubik_Dirt({
+	variable: "--font-rubik-dirt",
 	weight: "400",
 	subsets: ["latin"],
 });
@@ -33,12 +34,19 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body
-				className={`${geistSans.variable} ${rubikIso.variable} ${rubikGlitch.variable} antialiased`}
+				className={`${geistSans.variable} ${rubikIso.variable} ${rubikDirt.variable} antialiased`}
 			>
-				<Header />
-				{children}
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange
+				>
+					<Header />
+					{children}
+				</ThemeProvider>
 			</body>
 		</html>
 	);

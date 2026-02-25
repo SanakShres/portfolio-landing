@@ -147,7 +147,7 @@ export default function SlidingContent() {
 			</motion.div>
 
 			{/* Slider 2 */}
-			<motion.div
+			{/* <motion.div
 				style={{ x: x2 }}
 				className="flex relative gap-2 w-[120vw] -translate-x-[10vw]"
 			>
@@ -162,10 +162,10 @@ export default function SlidingContent() {
 						</h4>
 					</div>
 				))}
-			</motion.div>
+			</motion.div> */}
 
 			{/* Slider 3 */}
-			<motion.div
+			{/* <motion.div
 				style={{ x: x1 }}
 				className="flex relative gap-2 w-[120vw] -translate-x-[10vw]"
 			>
@@ -180,7 +180,7 @@ export default function SlidingContent() {
 						</h4>
 					</div>
 				))}
-			</motion.div>
+			</motion.div> */}
 
 			{/* Slider 1 */}
 			<motion.div
