@@ -8,6 +8,7 @@ import Lenis from "lenis";
 // components
 import Preloader from "@/components/preloader.component";
 import HeroSection from "@/components/landing/hero-section";
+import AboutMe from "@/components/about.component";
 
 export default function Home() {
 	const [isLoading, setIsLoading] = useState(false);
@@ -35,8 +36,9 @@ export default function Home() {
 		<main className="relative">
 			<AnimatePresence mode="wait">
 				{isLoading && <Preloader />}
+				<HeroSection />
+				<AboutMe />
 			</AnimatePresence>
-			<HeroSection />
 		</main>
 	);
 }
