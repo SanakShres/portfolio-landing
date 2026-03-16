@@ -3,7 +3,6 @@ import { motion, Variants } from "framer-motion";
 
 // ui components
 import RippleGrid from "@/components/ui/RippleGrid";
-import PixelSnow from "@/components/ui/PixelSnow";
 
 const slideUp: Variants = {
 	initial: {
@@ -23,22 +22,6 @@ export default function PortfolioLanding() {
 			animate="enter"
 			className="relative flex h-dvh overflow-hidden bg-black"
 		>
-			<div className="absolute inset-0">
-				<PixelSnow
-					color="#ffffff"
-					flakeSize={0.01}
-					minFlakeSize={1.25}
-					pixelResolution={300}
-					speed={1.25}
-					density={0.1}
-					direction={125}
-					brightness={0.5}
-					depthFade={4}
-					farPlane={20}
-					gamma={0.4545}
-					variant="square"
-				/>
-			</div>
 			<div className="absolute inset-0 flex items-center justify-center">
 				<div className="w-1/2 h-1/2">
 					<RippleGrid

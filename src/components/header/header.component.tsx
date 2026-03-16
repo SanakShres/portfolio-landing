@@ -1,132 +1,128 @@
 "use client";
 
-import { JSX, useLayoutEffect, useRef, useState } from "react";
-
-// packages
-import { AnimatePresence } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// components
-import SideMenu from "@/components/header/sidemenu/sidemenu.component";
-import RoundedButton from "@/components/common/rounded-button.component";
+import { JSX, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Magnetic from "@/components/common/magnetic.component";
 
+const navLinks = ["Work", "About", "Contact"];
+
 export default function Header(): JSX.Element {
-	const headerRef = useRef<HTMLDivElement | null>(null);
-	const buttonRef = useRef<HTMLDivElement | null>(null);
-	const [isActive, setIsActive] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
+	const [menuOpen, setMenuOpen] = useState(false);
 
-	// Scroll-triggered button animation
-	useLayoutEffect(() => {
-		if (!buttonRef.current) return;
-
-		gsap.registerPlugin(ScrollTrigger);
-
-		const btn = buttonRef.current;
-
-		ScrollTrigger.create({
-			trigger: document.documentElement,
-			start: 0,
-			end: window.innerHeight,
-			onLeave: () => {
-				gsap.to(btn, {
-					scale: 1,
-					duration: 0.25,
-					ease: "power1.out",
-				});
-			},
-			onEnterBack: () => {
-				gsap.to(btn, {
-					scale: 0,
-					duration: 0.25,
-					ease: "power1.out",
-				});
-				setIsActive(false);
-			},
-		});
+	useEffect(() => {
+		const onScroll = () => setScrolled(window.scrollY > 40);
+		window.addEventListener("scroll", onScroll, { passive: true });
+		return () => window.removeEventListener("scroll", onScroll);
 	}, []);
 
 	return (
 		<>
-			{/* Header */}
-			<div
-				ref={headerRef}
-				className="
-          absolute top-0 w-full z-10
-          flex justify-between items-center
-          px-8 py-8
-          font-light text-white
-        "
+			{/* ── Main Header ── */}
+			<header
+				className={`
+					fixed top-0 left-0 right-0 z-50
+					flex items-center justify-between
+					px-8 md:px-12
+					h-[92px]
+					transition-colors duration-300 ease-[cubic-bezier(0.76,0,0.24,1)]
+					${scrolled ? "bg-[#121111]/90 backdrop-blur-sm border-b border-white/5" : "bg-transparent"}
+				`}
 			>
 				{/* Logo */}
-				<div className="flex items-center cursor-pointer">
-					<p
-						className="
-              transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]
-              hover:rotate-360
-            "
-					>
+				<a
+					href="/"
+					className="flex items-center gap-1.5 group cursor-pointer select-none"
+					style={{ fontFamily: "var(--font-dm-mono), monospace" }}
+				>
+					<span className="text-[#ff442b] font-medium text-sm tracking-wider uppercase transition-transform duration-500 group-hover:rotate-360 inline-block">
 						©
-					</p>
-					<div className="flex relative overflow-hidden whitespace-nowrap ml-1 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">
-						<p className="relative transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] pr-1">
-							Code by
-						</p>
-						<p className="relative transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] pl-1">
-							SS
-						</p>
-						<p className="absolute left-30 pl-1 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">
-							Snellenberg
-						</p>
-					</div>
-				</div>
+					</span>
+					<span className="text-[#fafafa] text-sm font-light tracking-widest uppercase overflow-hidden">
+						<span className="inline-block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">
+							Code by&nbsp;
+						</span>
+						<span className="text-[#ff442b] font-medium transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)]">
+							SANAK
+						</span>
+					</span>
+				</a>
 
-				{/* Navigation */}
-				<div className="flex items-center">
-					{["Work", "About", "Contact"].map((item) => (
+				{/* Desktop Nav */}
+				<nav className="hidden md:flex items-center gap-1">
+					{navLinks.map((item) => (
 						<Magnetic key={item}>
-							<div className="relative flex flex-col items-center px-4 cursor-pointer group">
-								<a className="z-10">{item}</a>
-								<div className="absolute w-1.5 h-1.5 top-11.25 left-1/2 -translate-x-1/2 bg-white rounded-full scale-0 transition-transform duration-200 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-100"></div>
-							</div>
+							<a
+								href={`#${item.toLowerCase()}`}
+								className="relative px-5 py-2 text-sm font-light text-[#c4bfbf] tracking-wide cursor-pointer group transition-colors duration-200 hover:text-[#fafafa]"
+							>
+								{item}
+								<span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px bg-[#ff442b] w-0 transition-all duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:w-4/5" />
+							</a>
 						</Magnetic>
 					))}
-				</div>
-			</div>
 
-			{/* Hamburger Button */}
-			<div
-				ref={buttonRef}
-				className="fixed right-0 z-20 transform scale-0"
-			>
-				<RoundedButton
-					onClick={() => setIsActive((prev) => !prev)}
-					className="relative m-5 w-20 h-20 rounded-full bg-[#0b1944] flex items-center justify-center cursor-pointer"
+					<a
+						href="#contact"
+						className="ml-4 px-5 py-2 text-sm font-light text-[#fafafa] border border-[#ff442b] rounded-full tracking-wide cursor-pointer transition-all duration-300 hover:bg-[#ff442b] hover:text-white"
+					>
+						Hire me
+					</a>
+				</nav>
+
+				{/* Mobile Hamburger */}
+				<button
+					className="md:hidden flex flex-col gap-1.5 cursor-pointer p-2"
+					onClick={() => setMenuOpen((prev: boolean) => !prev)}
+					aria-label="Toggle menu"
 				>
-					<div
-						className={`
-              relative flex-1
-			  z-1
-              before:content-['']
-              after:content-['']
-              before:block after:block
-              before:h-px after:h-px
-              before:w-2/5 after:w-2/5
-              before:bg-white after:bg-white
-              before:mx-auto after:mx-auto
-              before:relative after:relative
-              before:top-1.25 after:-top-1.25
-              transition-transform duration-300
-              ${isActive ? "before:-rotate-45 before:top-px after:rotate-45 after:-top-px" : ""}
-            `}
+					<span
+						className={`block h-px w-6 bg-[#fafafa] transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-[7px]" : ""}`}
 					/>
-				</RoundedButton>
-			</div>
+					<span
+						className={`block h-px w-6 bg-[#fafafa] transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
+					/>
+					<span
+						className={`block h-px w-6 bg-[#fafafa] transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-[7px]" : ""}`}
+					/>
+				</button>
+			</header>
 
-			{/* Mobile Nav Overlay */}
-			<AnimatePresence mode="wait">
-				{isActive && <SideMenu />}
+			{/* ── Mobile Menu ── */}
+			<AnimatePresence>
+				{menuOpen && (
+					<motion.div
+						initial={{ opacity: 0, y: -20 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -20 }}
+						transition={{ duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
+						className="fixed inset-0 z-40 bg-[#121111] flex flex-col items-center justify-center gap-10 md:hidden"
+					>
+						{navLinks.map((item, i) => (
+							<motion.a
+								key={item}
+								href={`#${item.toLowerCase()}`}
+								initial={{ opacity: 0, y: 30 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ delay: i * 0.08 }}
+								className="text-5xl font-light text-[#fafafa] tracking-tight hover:text-[#ff442b] transition-colors duration-200"
+								onClick={() => setMenuOpen(false)}
+							>
+								{item}
+							</motion.a>
+						))}
+						<motion.a
+							href="#contact"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							transition={{ delay: 0.3 }}
+							className="mt-4 px-8 py-3 border border-[#ff442b] text-[#fafafa] text-lg rounded-full hover:bg-[#ff442b] transition-colors duration-200"
+							onClick={() => setMenuOpen(false)}
+						>
+							Hire me
+						</motion.a>
+					</motion.div>
+				)}
 			</AnimatePresence>
 		</>
 	);
