@@ -152,10 +152,10 @@ export default function HeroSection() {
 						initial={{ y: "102%" }}
 						animate={{ y: 0 }}
 						transition={{ duration: 1.1, ease: EASE, delay: 0.2 }}
-						className="text-[clamp(5rem,14vw,15rem)] font-black leading-[0.85] tracking-[-0.04em] text-[#121111] uppercase"
+						className="text-[clamp(4rem,14vw,14rem)] font-black leading-[0.85] tracking-[-0.04em] text-[#121111] uppercase"
 						style={{ fontFamily: "var(--font-inter-tight), sans-serif" }}
 					>
-						SANAK
+						SANAK SHRESTHA
 					</motion.h1>
 				</div>
 

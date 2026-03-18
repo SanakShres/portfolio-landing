@@ -56,9 +56,6 @@ export default function Home() {
 				{/* Dark — sticky scroll project panels */}
 				<Projects />
 
-				{/* Skills marquee (dark) */}
-				<SlidingContent />
-
 				{/* Light — about with word reveal */}
 				<AboutMe />
 

@@ -70,7 +70,7 @@ function ProjectPanel({
 	const opacity = useTransform(
 		progress,
 		[start, start + 0.05, end - 0.05, end],
-		[0, 1, 1, index === total - 1 ? 1 : 0.3]
+		[0, 1, 1, 1]
 	);
 	const scale = useTransform(
 		progress,
@@ -223,7 +223,7 @@ export default function Projects() {
 				{/* Marquee section title */}
 				<motion.div
 					style={{ x: titleX }}
-					className="overflow-visible px-8 md:px-20 pb-16"
+					className="overflow-visible px-8 md:px-20 pb-20"
 				>
 					<h2
 						className="whitespace-nowrap text-[clamp(4rem,9vw,10rem)] font-black tracking-[-0.04em] text-[#1a1919] uppercase leading-none select-none"

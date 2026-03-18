@@ -3,6 +3,7 @@
 import { JSX, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Magnetic from "@/components/common/magnetic.component";
+import Link from "next/link";
 
 const navLinks = ["Work", "About", "Contact"];
 
@@ -24,13 +25,13 @@ export default function Header(): JSX.Element {
 					fixed top-0 left-0 right-0 z-50
 					flex items-center justify-between
 					px-8 md:px-12
-					h-[92px]
+					h-23
 					transition-colors duration-300 ease-[cubic-bezier(0.76,0,0.24,1)]
 					${scrolled ? "bg-[#121111]/90 backdrop-blur-sm border-b border-white/5" : "bg-transparent"}
 				`}
 			>
 				{/* Logo */}
-				<a
+				<Link
 					href="/"
 					className="flex items-center gap-1.5 group cursor-pointer select-none"
 					style={{ fontFamily: "var(--font-dm-mono), monospace" }}
@@ -46,7 +47,7 @@ export default function Header(): JSX.Element {
 							SANAK
 						</span>
 					</span>
-				</a>
+				</Link>
 
 				{/* Desktop Nav */}
 				<nav className="hidden md:flex items-center gap-1">
@@ -77,13 +78,13 @@ export default function Header(): JSX.Element {
 					aria-label="Toggle menu"
 				>
 					<span
-						className={`block h-px w-6 bg-[#fafafa] transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-[7px]" : ""}`}
+						className={`block h-px w-6 bg-[#fafafa] transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-1.75" : ""}`}
 					/>
 					<span
 						className={`block h-px w-6 bg-[#fafafa] transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
 					/>
 					<span
-						className={`block h-px w-6 bg-[#fafafa] transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-[7px]" : ""}`}
+						className={`block h-px w-6 bg-[#fafafa] transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-1.75" : ""}`}
 					/>
 				</button>
 			</header>
